@@ -1,0 +1,71 @@
+/* ==========================================================================
+   Zugar · Panel administrativo · Tokens de diseño (Tailwind CSS v4)
+   Mismos colores del panel HTML como tema de Tailwind (bg-azul, text-marino, bg-fondo…).
+   ========================================================================== */
+@theme {
+  --color-marino: #0B2A5B;
+  --color-marino-700: #16386F;
+  --color-azul: #1F5BDB;
+  --color-azul-hover: #1849B4;
+  --color-azul-claro: #E8F0FE;
+  --color-azul-borde: #C7D7F8;
+  --color-fondo: #F4F7FB;
+  --color-dorado: #E0B84A;
+  --color-texto: #1B2A44;
+  --color-texto-suave: #5A6A82;
+  --color-texto-tenue: #8391A6;
+  --color-borde: #DCE3ED;
+  --color-borde-fuerte: #C3CEDD;
+  --font-serif: "Lora", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Nombres que usan los componentes del panel */
+:root {
+  --marino: #0B2A5B;
+  --marino-700: #16386F;
+  --azul: #1F5BDB;
+  --azul-hover: #1849B4;
+  --azul-claro: #E8F0FE;
+  --azul-borde: #C7D7F8;
+  --fondo: #F4F7FB;
+  --blanco: #FFFFFF;
+  --dorado: #E0B84A;
+  --texto: #1B2A44;
+  --texto-suave: #5A6A82;
+  --texto-tenue: #8391A6;
+  --borde: #DCE3ED;
+  --borde-fuerte: #C3CEDD;
+  --fila-hover: #F7F9FD;
+
+  --ok-bg: #E6F4EC;   --ok-tx: #1C6B3F;
+  --warn-bg: #FFF3DA; --warn-tx: #8F5B00; --warn-borde: #F5DCA4;
+  --gris-bg: #EEF1F5; --gris-tx: #4B5871;
+  --error-bg: #FDECEE; --error-tx: #B42332; --error-borde: #F3C3C9;
+  --info-bg: #E8F0FE; --info-tx: #1F4FB8;
+
+  --font-serif: "Lora", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.8125rem;
+  --fs-base: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.625rem;
+  --fs-2xl: 2.25rem;
+
+  --esp-1: 0.25rem; --esp-2: 0.5rem; --esp-3: 0.75rem; --esp-4: 1rem;
+  --esp-5: 1.25rem; --esp-6: 1.5rem; --esp-8: 2rem; --esp-10: 2.5rem;
+
+  --radio-sm: 6px;
+  --radio: 8px;
+  --radio-card: 12px;
+  --radio-pill: 999px;
+  --sombra: 0 1px 2px rgba(11, 42, 91, 0.04);
+  --sombra-lg: 0 24px 60px -20px rgba(11, 42, 91, 0.35);
+  --anillo: 0 0 0 3px rgba(31, 91, 219, 0.3);
+  --header-h: 64px;
+  --sidebar-w: 216px;
+  --control-h: 44px;
+  --t: 150ms ease;
+}

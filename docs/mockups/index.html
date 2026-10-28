@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bocetos de baja fidelidad · Zugar</title>
+<!-- Bocetos de baja fidelidad (Parte 2). Sin colores ni decoración: solo bloques, textos, campos, botones y mensajes.
+     Los botones con «→ P0X» son clicables y llevan al boceto de esa pantalla, igual que el mapa de navegación. -->
+<style>
+  :root { --l: #9aa1ab; --t: #3b4250; --s: #6b7380; --f: #f2f3f5; --w: #fff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px; background: #e6e8eb; font: 14px/1.4 "Comic Sans MS", "Segoe Print", "Chalkboard SE", system-ui, sans-serif; color: var(--t); }
+  h1.doc { font: 600 20px system-ui; margin: 0 0 4px; } p.doc { margin: 0 0 20px; font-family: system-ui; color: var(--s); }
+  nav.idx { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; font-family: system-ui; }
+  nav.idx a { padding: 4px 10px; border: 1.5px solid var(--l); border-radius: 6px; color: var(--t); text-decoration: none; background: var(--w); }
+  .screen { width: 1040px; margin: 0 0 40px; background: var(--w); border: 2px solid var(--t); border-radius: 10px; overflow: hidden; }
+  .screen.mobile { width: 390px; }
+  .tag { display: flex; justify-content: space-between; padding: 8px 14px; background: var(--t); color: #fff; font: 600 13px system-ui; }
+  .tag span { font-weight: 400; opacity: .85; }
+  .top { display: flex; align-items: center; gap: 12px; height: 52px; padding: 0 16px; border-bottom: 2px solid var(--l); background: var(--f); }
+  .logo { width: 120px; height: 26px; border: 2px dashed var(--l); display: grid; place-items: center; font-size: 11px; color: var(--s); }
+  .grow { flex: 1; }
+  .body { display: grid; grid-template-columns: 180px 1fr; min-height: 460px; }
+  .side { border-right: 2px solid var(--l); padding: 14px 10px; display: grid; align-content: start; gap: 6px; background: var(--f); }
+  .side a, .side div { padding: 7px 10px; border-radius: 6px; color: var(--t); text-decoration: none; border: 1.5px solid transparent; }
+  .side .on { border-color: var(--t); background: var(--w); font-weight: 700; }
+  .main { padding: 18px 22px; display: grid; gap: 14px; align-content: start; }
+  .crumbs { font-size: 12px; color: var(--s); }
+  .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .h1 { font-size: 24px; font-weight: 700; } .sub { color: var(--s); font-size: 13px; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .grid { display: grid; gap: 12px; } .g2 { grid-template-columns: 1fr 1fr; } .g3 { grid-template-columns: repeat(3, 1fr); } .g4 { grid-template-columns: repeat(4, 1fr); } .side-r { grid-template-columns: 1fr 280px; }
+  .box { border: 2px solid var(--l); border-radius: 8px; padding: 12px; display: grid; gap: 8px; align-content: start; }
+  .box h3 { margin: 0; font-size: 16px; }
+  .metric b { font-size: 26px; display: block; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border: 2px solid var(--t); border-radius: 6px; background: var(--t); color: #fff; font-weight: 700; text-decoration: none; font-size: 13px; }
+  .btn.sec { background: var(--w); color: var(--t); }
+  .btn.dan { background: var(--w); color: var(--t); border-style: dashed; }
+  .go { font: 600 11px system-ui; padding: 1px 6px; border-radius: 10px; background: #fff3; border: 1px solid currentColor; }
+  .lnk { color: var(--t); font-weight: 700; text-decoration: underline; }
+  .field { display: grid; gap: 4px; } .field label { font-size: 12px; font-weight: 700; }
+  .in { height: 32px; border: 2px solid var(--l); border-radius: 6px; padding: 5px 8px; color: var(--s); font-size: 12px; }
+  .in.err { border-color: var(--t); border-width: 3px; } .msg-err { font-size: 12px; font-weight: 700; }
+  .ph { background: repeating-linear-gradient(45deg, var(--f), var(--f) 8px, #e2e4e8 8px, #e2e4e8 16px); border: 2px solid var(--l); border-radius: 6px; display: grid; place-items: center; color: var(--s); font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; } th, td { border-bottom: 1.5px solid var(--l); padding: 7px 6px; text-align: left; } th { font-size: 11px; text-transform: uppercase; color: var(--s); }
+  .pill { display: inline-block; padding: 1px 8px; border: 1.5px solid var(--t); border-radius: 10px; font-size: 11px; }
+  .tabs { display: flex; gap: 16px; border-bottom: 2px solid var(--l); font-size: 13px; } .tabs span { padding-bottom: 6px; } .tabs .on { border-bottom: 3px solid var(--t); font-weight: 700; margin-bottom: -2px; }
+  .note { font: 12px system-ui; color: var(--s); border-left: 3px solid var(--l); padding-left: 8px; }
+  .state { border: 2px dashed var(--t); border-radius: 8px; padding: 10px; font-size: 12px; display: grid; gap: 6px; }
+  .state b { font-family: system-ui; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; }
+  .toast { justify-self: end; background: var(--t); color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 12px; }
+  .dialog-wrap { position: relative; background: #0002; padding: 30px; display: grid; place-items: center; min-height: 460px; }
+  .dialog { width: 560px; background: var(--w); border: 2px solid var(--t); border-radius: 12px; padding: 18px; display: grid; gap: 12px; }
+  .days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; } .days div { border: 2px solid var(--l); border-radius: 6px; text-align: center; padding: 6px 0; font-size: 12px; } .days .on { border-color: var(--t); background: var(--t); color: #fff; }
+  .skel { height: 12px; background: var(--f); border-radius: 4px; }
+  .field label .note { border: 0; padding: 0; }
+  .anno { font: 600 11px system-ui; color: var(--t); background: #fffbe6; border: 1.5px solid #c9b458; border-radius: 4px; padding: 2px 6px; justify-self: start; }
+</style>
+</head>
+<body>
+<h1 class="doc">Bocetos de baja fidelidad · Panel administrativo Zugar (Homiz) · Equipo 6</h1>
+<p class="doc">Proceso: «Agendar y resolver una visita a una propiedad». Los IDs (P01…P10) son los mismos del inventario, del mapa de navegación y de <code>src/data/pantallas.ts</code>. Los botones marcados con <b>→ P0X</b> llevan al boceto de esa pantalla.</p>
+<nav class="idx" aria-label="Pantallas"><a href="#P01">P01 Login</a><a href="#P02">P02 Resumen</a><a href="#P03">P03 Propiedades</a><a href="#P04">P04 Detalle</a><a href="#P05">P05 Citas</a><a href="#P06">P06 Nueva cita</a><a href="#P07">P07 Formulario</a><a href="#P08">P08 Clientes</a><a href="#P10">P10 Solicitudes</a><a href="#P05m">P05 celular</a></nav>
+
+<!-- ===================== P01 ===================== -->
+<section class="screen" id="P01">
+  <div class="tag">P01 · Inicio de sesión <span>/login · Personal: acceder al panel</span></div>
+  <div class="grid g2" style="min-height:460px;gap:0">
+    <div class="ph" style="border:0;border-right:2px solid var(--l);border-radius:0">Marca + foto + frase (columna de imagen)</div>
+    <div style="padding:40px;display:grid;align-content:center">
+      <div class="box" style="gap:12px;max-width:380px">
+        <div class="h1">Inicia sesión</div>
+        <div class="sub">Panel administrativo de Zugar</div>
+        <div class="state"><b>Estado · error</b>Correo o contraseña incorrectos. Te quedan 4 intentos. <span class="note">(5 intentos → bloqueo de 30 s)</span></div>
+        <div class="field"><label>Correo electrónico *</label><div class="in">nombre@zugar.com</div></div>
+        <div class="field"><label>Contraseña *</label><div class="row"><div class="in grow">••••••••</div><span class="btn sec">Mostrar</span></div></div>
+        <div class="row"><span>☐ Mantener la sesión iniciada</span><span class="grow"></span><span class="lnk">¿Olvidaste tu contraseña?</span></div>
+        <a class="btn" href="#P02">Entrar al panel <span class="go">→ P02</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== P02 ===================== -->
+<section class="screen" id="P02">
+  <div class="tag">P02 · Resumen (dashboard) <span>/resumen · Administradora: supervisar la semana</span></div>
+  <div class="top"><span class="logo">LOGO</span><span class="grow"></span><span>Ver sitio · Ayuda · 🔔</span><a class="btn sec" href="#P01">Lucía · Cerrar sesión <span class="go">→ P01</span></a></div>
+  <div class="body">
+    <div class="side"><a class="on" href="#P02">Resumen</a><a href="#P03">Propiedades</a><a href="#P08">Clientes</a><div>Brokers</div><a href="#P05">Citas</a><a href="#P10">Solicitudes</a><div>Pagos</div></div>
+    <div class="main">
+      <div class="crumbs">Administración / Resumen</div>
+      <div class="head"><div><div class="h1">Todo en su lugar.</div><div class="sub">Buen día, Lucía. Semana 20–26 oct.</div></div>
+        <div class="row"><span class="btn sec">Exportar resumen</span><a class="btn" href="#P07">Nueva propiedad <span class="go">→ P07</span></a></div></div>
+      <div class="grid g4">
+        <div class="box metric">Propiedades<b>6</b><small>3 renta · 3 venta</small></div><div class="box metric">Disponibles<b>3</b><small>1 reservada · 1 rentada</small></div>
+        <div class="box metric">Clientes<b>8</b><small>6 clientes · 2 inquilinos</small></div><div class="box metric">Citas semana<b>5</b><small>2 confirmadas · 1 por confirmar</small></div>
+      </div>
+      <div class="grid side-r">
+        <div class="grid">
+          <div class="box"><div class="row"><h3>Próximas visitas</h3><span class="grow"></span><a class="lnk" href="#P05">Ver agenda → P05</a></div>
+            <table><tr><th>Fecha</th><th>Cliente / propiedad</th><th>Broker</th></tr><tr><td>24 oct · 10:00</td><td>Ana García · Casa Ceiba <span class="pill">Confirmada</span></td><td>Mariana</td></tr><tr><td>24 oct · 12:30</td><td>Jorge Ramírez · Casa del Patio <span class="pill">Por confirmar</span></td><td>Diego</td></tr></table></div>
+          <div class="box"><h3>Requieren tu atención</h3>
+            <div class="row">☐ Casa Almendra está en borrador<span class="grow"></span><a class="lnk" href="#P07">Completar → P07</a></div>
+            <div class="row">☐ Una visita pendiente de confirmación<span class="grow"></span><a class="lnk" href="#P05">Revisar → P05</a></div></div>
+        </div>
+        <div class="grid"><div class="box"><div class="ph" style="height:110px">foto casa destacada</div><b>$28,000 / mes</b>Casa Ceiba<a class="lnk" href="#P04">Administrar propiedad → P04</a></div>
+          <div class="box"><h3>Actividad reciente</h3><div class="skel"></div><div class="skel"></div><div class="skel" style="width:60%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== P03 ===================== -->
+<section class="screen" id="P03">
+  <div class="tag">P03 · Listado de propiedades <span>/propiedades · Consultar inventario y disponibilidad</span></div>
+  <div class="top"><span class="logo">LOGO</span><span class="grow"></span><span>Lucía ▾</span></div>
+  <div class="body">
+    <div class="side"><a href="#P02">Resumen</a><a class="on" href="#P03">Propiedades</a><a href="#P08">Clientes</a><div>Brokers</div><a href="#P05">Citas</a><a href="#P10">Solicitudes</a><div>Pagos</div></div>
+    <div class="main">
+      <div class="crumbs">Administración / Propiedades</div>
+      <div class="head"><div class="h1">Cada casa, al día.</div><div class="row"><span class="btn sec">Exportar</span><a class="btn" href="#P07">Nueva propiedad <span class="go">→ P07</span></a></div></div>
+      <div class="tabs"><span class="on">Todas · 6</span><span>Disponibles · 3</span><span>Reservadas · 1</span><span>Rentadas · 1</span><span>Borradores · 1</span></div>
+      <div class="grid g4"><div class="field"><label>Buscar propiedad</label><div class="in">🔍 Nombre, clave o dirección</div></div><div class="field"><label>Operación</label><div class="in">Todas ▾</div></div><div class="field"><label>Zona</label><div class="in">Todas ▾</div></div><div class="field"><label>Broker</label><div class="in">Todos ▾</div></div></div>
+      <div class="note" aria-live="polite">«6 propiedades · Ordenadas por última actualización» (se anuncia al filtrar)</div>
+      <table><tr><th>Propiedad</th><th>Operación / precio</th><th>Disponibilidad</th><th>Broker</th><th>Acciones</th></tr>
+        <tr><td>▭ Casa Ceiba · ZUG-001</td><td>Renta · $28,000</td><td><span class="pill">Disponible</span></td><td>Mariana</td><td><a class="lnk" href="#P04">Ver → P04</a> · <a class="lnk" href="#P07">Editar → P07</a> · Eliminar*</td></tr>
+        <tr><td>▭ Casa de la Luz · ZUG-004</td><td>Venta · $6,200,000</td><td><span class="pill">Reservada</span></td><td>Diego</td><td>Ver · Editar · Eliminar*</td></tr>
+        <tr><td>▭ Casa Almendra · ZUG-006</td><td>Venta · $3,450,000</td><td><span class="pill">Borrador</span></td><td>Valeria</td><td>Ver · Editar · Eliminar*</td></tr></table>
+      <div class="grid g2"><div class="state"><b>Estado · vacío</b>«Ninguna casa coincide con estos filtros.»</div><div class="state"><b>Confirmación *</b>«¿Eliminar Casa Ceiba?» · Conservar / Sí, eliminar</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== P04 ===================== -->
+<section class="screen" id="P04">
+  <div class="tag">P04 · Detalle de propiedad <span>/propiedades/:id · Broker: revisar la casa</span></div>
+  <div class="top"><span class="logo">LOGO</span><span class="grow"></span><span>Lucía ▾</span></div>
+  <div class="body">
+    <div class="side"><a href="#P02">Resumen</a><a class="on" href="#P03">Propiedades</a><a href="#P08">Clientes</a><div>Brokers</div><a href="#P05">Citas</a><a href="#P10">Solicitudes</a><div>Pagos</div></div>
+    <div class="main">
+      <div class="crumbs"><a class="lnk" href="#P03">← Volver al listado (P03)</a> · Administración / Propiedades / ZUG-001</div>
+      <div class="head"><div><div class="h1">Casa Ceiba</div><div class="sub">Arbolada, Cancún · <span class="pill">En renta</span> <span class="pill">Disponible</span></div></div><div class="row"><span class="btn sec">Pausar publicación</span><a class="btn" href="#P07">Editar propiedad <span class="go">→ P07</span></a></div></div>
+      <div class="grid" style="grid-template-columns:1.4fr 1fr 1fr;height:150px"><div class="ph">Foto principal</div><div class="ph">Foto</div><div class="ph">Foto</div></div>
+      <div class="tabs"><span class="on">Información general</span><span>Fotografías · 3</span><span>Citas · 1</span><span>Expediente (API)</span><span>Pagos (API)</span></div>
+      <div class="grid side-r">
+        <div class="box"><b>$28,000 MXN / mes</b><div class="grid g4"><span>180 m²</span><span>3 rec.</span><span>2 baños</span><span>2 autos</span></div><div class="skel"></div><div class="skel" style="width:70%"></div><h3>Amenidades</h3><div class="grid g2"><span>✓ Jardín</span><span>✓ Cocina integral</span></div></div>
+        <div class="grid"><div class="box"><h3>Próxima cita</h3>24 oct · 10:00 · Ana García <span class="pill">Confirmada</span><a class="lnk" href="#P05">Ver agenda → P05</a></div><div class="box"><h3>Broker asignado</h3>○ Mariana Solís<span class="btn sec">Cambiar broker</span></div><div class="box"><h3>Historial</h3><div class="skel"></div><div class="skel"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== P05 ===================== -->
+<section class="screen" id="P05">
+  <div class="tag">P05 · Agenda de citas <span>/citas · Broker: confirmar, reprogramar, cancelar o cerrar visitas</span></div>
+  <div class="top"><span class="logo">LOGO</span><span class="grow"></span><span>Lucía ▾</span></div>
+  <div class="body">
+    <div class="side"><a href="#P02">Resumen</a><a href="#P03">Propiedades</a><a href="#P08">Clientes</a><div>Brokers</div><a class="on" href="#P05">Citas</a><a href="#P10">Solicitudes</a><div>Pagos</div></div>
+    <div class="main">
+      <div class="crumbs">Administración / Citas</div>
+      <div class="head"><div class="h1">Cada visita, bien acompañada.</div><div class="row"><span class="btn sec">Exportar agenda</span><a class="btn" href="#P06">+ Nueva cita <span class="go">→ P06</span></a></div></div>
+      <div class="grid g4"><div class="box metric">Semana<b>5</b></div><div class="box metric">Confirmadas<b>2</b></div><div class="box metric">Por confirmar<b>1</b></div><div class="box metric">Realizadas / canceladas<b>1 / 1</b></div></div>
+      <div class="grid side-r">
+        <div class="grid">
+          <div class="row"><b>Octubre 2026</b><span class="grow"></span>‹ 20–26 oct. ›</div>
+          <div class="days"><div>Mar 20</div><div>Mié 21</div><div>Jue 22</div><div>Vie 23</div><div class="on">Sáb 24<br>2 citas</div><div>Dom 25</div><div>Lun 26</div></div>
+          <div class="tabs"><span class="on">Todas · 4</span><span>Confirmadas · 2</span><span>Por confirmar · 1</span><span>Canceladas · 1</span></div>
+          <div class="grid g2"><div class="field"><label>Buscar cita</label><div class="in">🔍 Cliente o propiedad</div></div><div class="field"><label>Broker</label><div class="in">Todos ▾</div></div></div>
+          <table><tr><th>Fecha / hora</th><th>Cliente / propiedad</th><th>Broker</th><th>Estado</th></tr><tr><td>24 oct · 10:00</td><td>Ana García · Casa Ceiba</td><td>Mariana</td><td><span class="pill">Confirmada</span></td></tr><tr><td>24 oct · 12:30</td><td>Jorge Ramírez · Casa del Patio</td><td>Diego</td><td><span class="pill">Por confirmar</span></td></tr></table>
+        </div>
+        <div class="box" aria-live="polite"><div class="row">‹ Cita 2 de 4 ›</div><span class="pill">Por confirmar</span><h3>Una visita a Casa del Patio</h3><div class="ph" style="height:70px">foto</div><a class="lnk" href="#P04">Casa del Patio → P04</a>Cliente: Jorge Ramírez<br>Broker: Diego<div class="note">Nota: «Quiere revisar la terraza»</div>
+          <span class="btn">Confirmar cita</span><a class="btn sec" href="#P06">Reprogramar <span class="go">→ P06</span></a><span class="lnk">Cancelar cita *</span>
+          <span class="anno">Regla: «Confirmar» solo si está por confirmar; «Marcar como realizada» solo si está confirmada</span></div>
+      </div>
+      <div class="grid g3"><div class="state"><b>Estado · carga</b><div class="skel"></div><div class="skel"></div>«Cargando datos de Zugar…»</div><div class="state"><b>Estado · vacío</b>«No hay citas con estos filtros.»</div><div class="state"><b>Estado · éxito</b><span class="toast">Cita confirmada con Jorge Ramírez.</span></div></div>
+      <div class="state"><b>Confirmación *</b>«¿Cancelar la visita de Jorge Ramírez? Saldrá de la agenda y quedará en Canceladas.» · Conservar cita / Sí, cancelar cita</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== P06 ===================== -->
+<section class="screen" id="P06">
+  <div class="tag">P06 · Nueva cita / Reprogramar (diálogo sobre P05) <span>Registrar la solicitud de visita</span></div>
+  <div class="dialog-wrap">
+    <div class="dialog">
+      <div class="row"><div class="h1" style="font-size:20px">Nueva cita</div><span class="grow"></span><a class="lnk" href="#P05">✕ (Esc) → P05</a></div>
+      <div class="sub">Visita presencial de 45 minutos. Quedará <b>por confirmar</b> hasta que el cliente acepte.</div>
+      <div class="grid g2">
+        <div class="field"><label>Cliente *</label><div class="in">Laura Medina ▾</div></div>
+        <div class="field"><label>Propiedad * <span class="note">(sin borradores)</span></label><div class="in">Casa Nativa · ZUG-005 ▾</div></div>
+        <div class="field"><label>Fecha * <span class="note">(desde hoy)</span></label><div class="in">24/10/2026</div></div>
+        <div class="field"><label>Horario *</label><div class="in err">10:00 ▾</div><span class="msg-err">⚠ Mariana Solís ya tiene una cita a esa hora.</span></div>
+        <div class="field" style="grid-column:1/-1"><label>Broker responsable *</label><div class="in">Mariana Solís ▾</div><span class="note">Por defecto, el responsable de la casa.</span></div>
+        <div class="field" style="grid-column:1/-1"><label>Nota del cliente</label><div class="in" style="height:54px">Lo que le interesa ver…</div></div>
+      </div>
+      <div class="row" style="justify-content:flex-end"><a class="btn sec" href="#P05">Cancelar <span class="go">→ P05</span></a><a class="btn" href="#P05">Agendar cita <span class="go">→ P05</span></a></div>
+      <span class="anno">Errores: cada campo muestra su mensaje (aria-invalid + aria-describedby) y el foco va al primero.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== P07 ===================== -->
+<section class="screen" id="P07">
+  <div class="tag">P07 · Formulario de propiedad <span>/propiedades/nueva · /:id/editar · Administración: alta y cambio de estado</span></div>
+  <div class="top"><span class="logo">LOGO</span><span class="grow"></span><span>Lucía ▾</span></div>
+  <div class="body">
+    <div class="side"><a href="#P02">Resumen</a><a class="on" href="#P03">Propiedades</a><a href="#P08">Clientes</a><div>Brokers</div><a href="#P05">Citas</a><a href="#P10">Solicitudes</a><div>Pagos</div></div>
+    <div class="main">
+      <div class="crumbs">Administración / Propiedades / <a class="lnk" href="#P04">Casa Ceiba (P04)</a> / Editar</div>
+      <div class="h1">Editar Casa Ceiba</div>
+      <div class="grid side-r">
+        <div class="grid">
+          <div class="box"><h3>01 / Información inmobiliaria</h3><div class="grid g2"><div class="field"><label>Nombre *</label><div class="in">Casa Ceiba</div></div><div class="field"><label>Tipo *</label><div class="in">Casa ▾</div></div><div class="field"><label>Zona *</label><div class="in">Arbolada</div></div><div class="field"><label>Dirección *</label><div class="in">Calle Ceiba 24</div></div></div></div>
+          <div class="box"><h3>02 / Operación y disponibilidad</h3><div class="grid g3"><div class="field"><label>Operación *</label><div class="in">Renta ▾</div></div><div class="field"><label>Precio *</label><div class="in">$28,000</div></div><div class="field"><label>Estado *</label><div class="in err">Reservada ▾</div></div></div><span class="anno">Paso 8 del flujo: el cliente quiere la casa → Estado «Reservada»</span><span class="note">Regla: una casa en borrador no puede publicarse.</span></div>
+          <div class="box"><h3>03 / Fotografías · 04 / Amenidades</h3><div class="grid g3" style="height:60px"><div class="ph">foto</div><div class="ph">foto</div><div class="ph">+ Agregar</div></div></div>
+          <div class="box row"><div class="grow"><b>Cambios listos para guardar</b><br><small>* Campos obligatorios</small></div><a class="btn sec" href="#P04">Cancelar <span class="go">→ P04</span></a><a class="btn" href="#P04">Guardar cambios <span class="go">→ P04</span></a></div>
+        </div>
+        <div class="box" aria-live="polite"><h3>Resumen</h3><div class="ph" style="height:90px">portada</div><b>$28,000 / mes</b><span class="pill">Reservada</span><div class="note">Lista para publicar:<br>✓ Datos generales<br>✓ Precio<br>✓ Fotografías</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== P08 ===================== -->
+<section class="screen" id="P08">
+  <div class="tag">P08 · Clientes e inquilinos (complementaria) <span>/personas · Broker: conocer a quién atiende</span></div>
+  <div class="top"><span class="logo">LOGO</span><span class="grow"></span><span>Lucía ▾</span></div>
+  <div class="body">
+    <div class="side"><a href="#P02">Resumen</a><a href="#P03">Propiedades</a><a class="on" href="#P08">Clientes</a><div>Brokers</div><a href="#P05">Citas</a><a href="#P10">Solicitudes</a><div>Pagos</div></div>
+    <div class="main">
+      <div class="head"><div class="h1">Personas, no expedientes.</div><span class="btn">+ Agregar persona</span></div>
+      <div class="grid side-r">
+        <table><tr><th>Persona</th><th>Tipo</th><th>Propiedad</th><th>Seguimiento</th></tr><tr><td>Ana García</td><td><span class="pill">Cliente</span></td><td>Casa Ceiba</td><td>Visita confirmada</td></tr><tr><td>Laura Medina</td><td><span class="pill">Cliente</span></td><td>Casa Nativa</td><td>En seguimiento</td></tr></table>
+        <div class="box"><h3>Laura Medina</h3>Presupuesto: $32,000 / mes<br>3 rec · 2 personas<a class="btn" href="#P06">Agendar visita <span class="go">→ P06</span></a><a class="lnk" href="#P05">Ver cita → P05</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== P10 ===================== -->
+<section class="screen" id="P10">
+  <div class="tag">P10 · Solicitudes <span>/solicitudes · Broker: atender lo que llega del sitio público</span></div>
+  <div class="top"><span class="logo">LOGO</span><span class="grow"></span><span>🔔 3 · Lucía ▾</span></div>
+  <div class="body">
+    <div class="side"><a href="#P02">Resumen</a><a href="#P03">Propiedades</a><a href="#P08">Clientes</a><div>Brokers</div><a href="#P05">Citas</a><a class="on" href="#P10">Solicitudes</a><div>Pagos</div></div>
+    <div class="main">
+      <div class="crumbs">Administración / Solicitudes</div>
+      <div class="head"><div class="h1">Cada solicitud, con respuesta.</div><span class="btn">+ Nueva solicitud</span></div>
+      <div class="tabs"><span class="on">Nuevas · 3</span><span>En seguimiento · 3</span><span>Cerradas · 1</span><span>Todas · 7</span></div>
+      <table><tr><th>Persona / folio</th><th>Motivo</th><th>Busca</th><th>Recibida</th><th>Estado</th><th></th></tr>
+        <tr><td>Roberto Díaz · SOL-0102</td><td>Visita</td><td>Casa Ceiba</td><td>19 oct</td><td><span class="pill">Nueva</span></td><td><span class="btn sec">Atender</span></td></tr>
+        <tr><td>Patricia Gómez · SOL-0103</td><td>Quiere comprar</td><td>$4–5 M · 3 rec.</td><td>20 oct</td><td><span class="pill">Nueva</span></td><td><span class="btn sec">Atender</span></td></tr></table>
+      <div class="grid side-r">
+        <div class="grid">
+          <div class="box"><div class="row"><h3>Roberto Díaz · SOL-0102</h3><span class="grow"></span><span class="pill">Nueva</span></div>
+            <div class="row"><a class="btn" href="#P06">Agendar cita <span class="go">→ P06</span></a><span class="btn sec">Editar datos</span><span class="btn dan">Eliminar *</span></div>
+            <div class="grid g3"><span>Correo<br><b>roberto.d@…</b></span><span>Fecha preferida<br><b>23 oct · 11:00</b></span><span>Casa<br><a class="lnk" href="#P04">Casa Ceiba → P04</a></span></div>
+            <div class="note">Formulario que llenó en el sitio: personas, mascotas, ocupación, mensaje</div></div>
+          <div class="box"><h3>Citas · 1</h3><div class="row"><a class="lnk" href="#P05">CIT-027 · Casa Ceiba → P05</a><span class="grow"></span><span class="pill">Por confirmar</span></div></div>
+          <div class="box"><h3>Casas propuestas</h3><div class="grid g3"><div class="in">Elige una casa ▾</div><div class="in">Nota (opcional)</div><span class="btn">+ Proponer</span></div></div>
+        </div>
+        <div class="grid"><div class="box"><h3>Conversación</h3><div class="skel"></div><div class="skel" style="width:70%"></div><div class="in" style="height:50px">Escribe al cliente…</div><span class="btn">Enviar mensaje</span></div>
+          <div class="box"><h3>Seguimiento</h3><div class="row"><span class="btn sec">Nueva</span><span class="btn">En seguimiento</span><span class="btn sec">Cerrada</span></div></div></div>
+      </div>
+      <div class="grid g2"><div class="state"><b>Estado · vacío</b>«No hay solicitudes nuevas.»</div><div class="state"><b>Estado · error</b>«Mariana Solís ya tiene una cita ese día a las 11:00 h. Elige otro horario.»</div></div>
+      <span class="anno">Entrada del flujo: lo que se envía en el sitio público llega aquí como «Nueva»</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== P05 en celular ===================== -->
+<section class="screen mobile" id="P05m">
+  <div class="tag">P05 · Agenda en celular (375 px) <span>mobile first</span></div>
+  <div class="top"><span class="btn sec">☰ Menú</span><span class="logo" style="width:90px">LOGO</span><span class="grow"></span><span class="btn sec">LM</span></div>
+  <div class="main">
+    <div class="h1" style="font-size:20px">Cada visita, bien acompañada.</div>
+    <div class="row"><span class="btn sec">Exportar</span><a class="btn" href="#P06">+ Nueva cita → P06</a></div>
+    <div class="grid g2"><div class="box metric">Semana<b>5</b></div><div class="box metric">Confirmadas<b>2</b></div></div>
+    <div class="days" style="grid-template-columns:repeat(4,1fr)"><div>Mar 20</div><div>Mié 21</div><div>Jue 22</div><div>Vie 23 →</div></div>
+    <span class="note">Los días y las tablas se desplazan de lado dentro de su caja; la página no.</span>
+    <div class="field"><label>Buscar cita</label><div class="in">🔍 Cliente o propiedad</div></div>
+    <div class="box"><span class="pill">Por confirmar</span><b>Casa del Patio · 24 oct, 12:30</b><span class="btn">Confirmar cita</span><span class="btn sec">Reprogramar</span></div>
+    <span class="anno">El menú lateral se abre como panel con «☰ Menú» y se cierra con Esc</span>
+  </div>
+</section>
+</body>
+</html>

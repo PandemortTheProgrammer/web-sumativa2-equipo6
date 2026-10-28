@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Zugar · Tokens de diseño (Tailwind CSS v4)
+   Los colores, tipografías y sombras del sitio de siempre como tema de Tailwind:
+   generan utilidades (bg-marino, text-dorado, font-serif, shadow-md…).
+   ========================================================================== */
+@theme {
+  --color-marino: #0B2A5B;
+  --color-marino-900: #071D40;
+  --color-marino-700: #163A73;
+  --color-accion: #1E5BD8;
+  --color-accion-hover: #1748B0;
+  --color-accion-50: #E9F0FF;
+  --color-accion-100: #D5E2FD;
+  --color-dorado: #C9A227;
+  --color-dorado-hover: #B38E1A;
+  --color-superficie: #F3F6FB;
+  --color-texto: #1A2B48;
+  --color-texto-suave: #56667F;
+  --color-texto-tenue: #7B89A0;
+  --color-borde: #D9E1EC;
+  --color-borde-fuerte: #B8C5D8;
+  --color-error: #C2283A;
+  --color-error-bg: #FFF0F2;
+  --color-exito: #1E7A4C;
+  --color-exito-bg: #ECF7F1;
+
+  --font-serif: "Lora", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --radius-control: 8px;
+  --radius-card: 16px;
+
+  --shadow-sm: 0 1px 2px rgba(11, 42, 91, 0.06), 0 1px 3px rgba(11, 42, 91, 0.06);
+  --shadow-md: 0 10px 28px -8px rgba(11, 42, 91, 0.18);
+  --shadow-lg: 0 24px 48px -16px rgba(11, 42, 91, 0.22);
+}
+
+/* Nombres que usan los componentes (los mismos de la hoja de estilos original) */
+:root {
+  --marino: var(--color-marino);
+  --marino-900: var(--color-marino-900);
+  --marino-700: var(--color-marino-700);
+  --accion: var(--color-accion);
+  --accion-hover: var(--color-accion-hover);
+  --accion-50: var(--color-accion-50);
+  --accion-100: var(--color-accion-100);
+  --dorado: var(--color-dorado);
+  --dorado-hover: var(--color-dorado-hover);
+  --superficie: var(--color-superficie);
+  --blanco: #FFFFFF;
+  --texto: var(--color-texto);
+  --texto-suave: var(--color-texto-suave);
+  --texto-tenue: var(--color-texto-tenue);
+  --borde: var(--color-borde);
+  --borde-fuerte: var(--color-borde-fuerte);
+  --error: var(--color-error);
+  --error-bg: var(--color-error-bg);
+  --exito: var(--color-exito);
+  --exito-bg: var(--color-exito-bg);
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  --fs-xl: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  --fs-2xl: clamp(1.875rem, 1.4rem + 2vw, 2.75rem);
+  --fs-3xl: clamp(2.25rem, 1.6rem + 2.8vw, 3.5rem);
+
+  --contenedor: 1280px;
+  --gutter: clamp(1.25rem, 4vw, 5rem);
+  --seccion: clamp(4rem, 3rem + 4vw, 7rem);
+  --radio-control: var(--radius-control);
+  --radio-card: var(--radius-card);
+  --radio-pill: 999px;
+  --radio-hero: clamp(64px, 9vw, 140px);
+  --control-h: 48px;
+
+  --sombra-sm: var(--shadow-sm);
+  --sombra-md: var(--shadow-md);
+  --sombra-lg: var(--shadow-lg);
+  --anillo: 0 0 0 3px rgba(30, 91, 216, 0.28);
+  --transicion: 160ms ease;
+}
+
+/* En celular los controles son más altos (más fáciles de tocar) */
+@media (max-width: 760px) {
+  :root { --control-h: 52px; }
+}

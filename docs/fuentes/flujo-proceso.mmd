@@ -1,0 +1,34 @@
+%%{init: {'theme':'base','themeVariables':{'fontFamily':'Inter, Arial','fontSize':'15px','primaryColor':'#ffffff','primaryBorderColor':'#0B2A5B','lineColor':'#0B2A5B','primaryTextColor':'#1B2A44'}}}%%
+flowchart TD
+  A([INICIO<br/>Cliente pide visitar una casa<br/>en el sitio público o por teléfono]):::fin --> A2[La solicitud llega como <b>Nueva</b><br/><b>P10 Solicitudes</b>]
+  A2 --> B[1. Broker agenda la cita<br/><b>P10 Agendar cita · P06 Nueva cita</b>]
+  B --> C{2. ¿Datos completos<br/>y fecha desde hoy?}
+  C -- No --> E1[/Error: mensaje en el campo<br/>«Completa Cliente», «Elige una fecha a partir de hoy»/]:::err
+  E1 --> B
+  C -- Sí --> D{3. ¿Casa publicable y<br/>broker libre a esa hora?}
+  D -- No --> E2[/Error: «Mariana Solís ya tiene<br/>una cita a esa hora»/]:::err
+  E2 --> B
+  D -- Sí --> S1[(Estado de la cita:<br/><b>POR CONFIRMAR</b>)]:::est
+  S1 --> F[4. Broker contacta al cliente<br/><b>P05 Agenda de citas</b>]
+  F --> G{5. ¿El cliente acepta<br/>fecha y hora?}
+  G -- Sí --> S2[(Cita <b>CONFIRMADA</b>)]:::est
+  G -- Pide otro horario --> R[Reprogramar<br/><b>P06 Reprogramar</b>]
+  R --> S1
+  G -- Ya no le interesa --> X[Cancelar con confirmación<br/>«¿Cancelar la visita…?»]
+  X --> S4[(Cita <b>CANCELADA</b><br/>queda en historial)]:::est
+  S4 --> Z2([FIN alterno<br/>sin visita]):::fin
+  S2 --> H{6. Día de la visita:<br/>¿se realizó?}
+  H -- No asistió --> G
+  H -- Sí --> S3[(Cita <b>REALIZADA</b>)]:::est
+  S3 --> I{7. ¿El cliente quiere<br/>la casa?}
+  I -- No --> J[Seguimiento: agendar otra visita<br/><b>P08 / P06</b>]
+  J --> Z3([FIN<br/>cliente en seguimiento]):::fin
+  I -- Sí --> K[8. Administración cambia el estado<br/><b>P07 Formulario de propiedad</b>]
+  K --> S5[(Casa <b>RESERVADA</b>)]:::est
+  S5 --> L[9. Contrato y pagarés<br/><b>P05 Rentarle la casa · P11 Pagos</b>]
+  L --> S6[(Casa <b>RENTADA</b> o vendida)]:::est
+  S6 --> Z([FIN<br/>proceso cerrado]):::fin
+  classDef fin fill:#0B2A5B,color:#fff,stroke:#0B2A5B
+  classDef est fill:#E8F0FE,stroke:#1F5BDB,color:#0B2A5B
+  classDef err fill:#FDECEE,stroke:#B42332,color:#B42332
+  classDef fut fill:#F4F7FB,stroke:#8391A6,stroke-dasharray:5 4,color:#5A6A82
